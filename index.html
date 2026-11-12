@@ -2435,7 +2435,7 @@ function staffEntries(){return Object.entries((settings&&settings.staff)||{})}
 const PERM_ITEMS=[['sell','Sell'],['dash','Dashboard'],['inv','Inventory'],['pur','Purchase'],['due','Dues'],['cash','Cash'],['rep','Reports'],['log','Activity Log'],['order','Order Needed'],['settings','Settings'],['manualSale','Add Sale Amount']];
 const defaultPerms=type=>{const p={};PERM_ITEMS.forEach(([k])=>p[k]=false);p.sell=true;if(type==='Admin')['dash','inv','pur','due','cash','rep','log','order','settings','manualSale'].forEach(k=>p[k]=true);return p};
 function userPerms(u){return {...defaultPerms('Staff'),...(u&&u.permissions||{})}}
-function fillUsers(){$("lUser").innerHTML=`<option value="owner">Owner</option>`+staffEntries().filter(([,u])=>u.active).map(([id,u])=>`<option value="${id}">${esc(u.name)} (${esc(u.type||'Staff')})</option>`).join("")}
+function fillUsers(){$("lUser").innerHTML=`<option value="owner">Server</option>`+staffEntries().filter(([,u])=>u.active).map(([id,u])=>`<option value="${id}">${esc(u.name)} (${esc(u.type||'Staff')})</option>`).join("")}
 function sessionValid(sess){if(!sess||!settings)return null;if(sess.id==="owner")return settings.owner&&settings.owner.hash===sess.h?{role:"admin",name:"Owner",type:"Owner",permissions:Object.fromEntries(PERM_ITEMS.map(([k])=>[k,true]))}:null;const u=(settings.staff||{})[sess.id];return u&&u.active&&u.hash===sess.h?{role:"staff",name:u.name,type:u.type||'Staff',permissions:userPerms(u)}:null}
 function getHideOutOfStockPreference(){
   try{const v=localStorage.getItem("mia_hide_out_of_stock_sell");return v===null?null:v==="true"}catch(e){return null}
