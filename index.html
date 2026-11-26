@@ -864,14 +864,14 @@ body.bn,body.bn button,body.bn input,body.bn select{font-family:"Hind Siliguri",
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script>
 firebase.initializeApp({
-  apiKey:"AIzaSyBuvyNPKkndX2JIPzKLddDC41C0Ayds4YU",
-  authDomain:"mez-1515e.firebaseapp.com",
-  databaseURL:"https://mez-1515e-default-rtdb.firebaseio.com",
-  projectId:"mez-1515e",
-  storageBucket:"mez-1515e.firebasestorage.app",
-  messagingSenderId:"303213442955",
-  appId:"1:303213442955:web:738bfdf92788115dac218e",
-  measurementId:"G-0Y4P2TYCQ3"
+  apiKey: "AIzaSyBaImy1hZgUuOwssvG_tuHYiacSnyaaR34",
+  authDomain: "mia-pharmacy-32f04.firebaseapp.com",
+  databaseURL: "https://mia-pharmacy-32f04-default-rtdb.firebaseio.com",
+  projectId: "mia-pharmacy-32f04",
+  storageBucket: "mia-pharmacy-32f04.firebasestorage.app",
+  messagingSenderId: "688870386104",
+  appId: "1:688870386104:web:938cc7b067dfc77758074d",
+  measurementId: "G-1F6PMVD7JD"
 });
 const db=firebase.database();
 const $=id=>document.getElementById(id);
@@ -2512,8 +2512,8 @@ function staffEntries(){return Object.entries((settings&&settings.staff)||{})}
 const PERM_ITEMS=[['sell','Sell'],['dash','Dashboard'],['inv','Inventory'],['pur','Purchase'],['due','Dues'],['cash','Cash'],['rep','Reports'],['log','Activity Log'],['order','Order Needed'],['settings','Settings'],['manualSale','Add Sale Amount']];
 const defaultPerms=type=>{const p={};PERM_ITEMS.forEach(([k])=>p[k]=false);p.sell=true;if(type==='Admin')['dash','inv','pur','due','cash','rep','log','order','settings','manualSale'].forEach(k=>p[k]=true);return p};
 function userPerms(u){return {...defaultPerms('Staff'),...(u&&u.permissions||{})}}
-function fillUsers(){$("lUser").innerHTML=`<option value="owner">Owner</option>`+staffEntries().filter(([,u])=>u.active).map(([id,u])=>`<option value="${id}">${esc(u.name)} (${esc(u.type||'Staff')})</option>`).join("")}
-function sessionValid(sess){if(!sess||!settings)return null;if(sess.id==="owner")return settings.owner&&settings.owner.hash===sess.h?{role:"admin",name:"Owner",type:"Owner",permissions:Object.fromEntries(PERM_ITEMS.map(([k])=>[k,true]))}:null;const u=(settings.staff||{})[sess.id];return u&&u.active&&u.hash===sess.h?{role:"staff",name:u.name,type:u.type||'Staff',permissions:userPerms(u)}:null}
+function fillUsers(){$("lUser").innerHTML=`<option value="owner">MD MASHRAFI HOSSAIN</option>`+staffEntries().filter(([,u])=>u.active).map(([id,u])=>`<option value="${id}">${esc(u.name)} (${esc(u.type||'Staff')})</option>`).join("")}
+function sessionValid(sess){if(!sess||!settings)return null;if(sess.id==="owner")return settings.owner&&settings.owner.hash===sess.h?{role:"admin",name:"MD MASHRAFI HOSSAIN",type:"Owner",permissions:Object.fromEntries(PERM_ITEMS.map(([k])=>[k,true]))}:null;const u=(settings.staff||{})[sess.id];return u&&u.active&&u.hash===sess.h?{role:"staff",name:u.name,type:u.type||'Staff',permissions:userPerms(u)}:null}
 function getHideOutOfStockPreference(){
   try{const v=localStorage.getItem("mia_hide_out_of_stock_sell");return v===null?null:v==="true"}catch(e){return null}
 }
